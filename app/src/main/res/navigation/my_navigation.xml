@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/applianceFragment">
+
+    <fragment
+        android:id="@+id/applianceFragment"
+        android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordList"
+        android:label="fragment_item_list"
+        tools:layout="@layout/password_list_fragment" >
+        <action
+            android:id="@+id/action_applianceFragment_to_addApplianceFragment"
+            app:destination="@id/addApplianceFragment" />
+        <action
+            android:id="@+id/action_applianceFragment_to_appliance"
+            app:destination="@id/appliance" />
+    </fragment>
+    <fragment
+        android:id="@+id/addApplianceFragment"
+        android:name="com.sharipov.passwordkeeper.Presentation.View.AddPassword"
+        android:label="fragment_add_appliance"
+        tools:layout="@layout/add_password_fragment" />
+    <fragment
+        android:id="@+id/appliance"
+        android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordDetails"
+        android:label="appliance_fragment"
+        tools:layout="@layout/password_details_fragment" />
+</navigation>
