@@ -4,11 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.sharipov.passwordkeeper.Presentation.Repository.Repository;
+import com.sharipov.passwordkeeper.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    public ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(mainBinding.getRoot());
+        Repository.init(getApplication());
     }
 }

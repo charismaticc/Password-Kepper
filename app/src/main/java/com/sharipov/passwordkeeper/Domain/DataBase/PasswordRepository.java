@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PasswordRepository implements RepositoryTasks {
 
-    private PasswordDAO passwordDAO;
+    private final PasswordDAO passwordDAO;
     private LiveData<List<PasswordDTO>> mutableAllPassword = new MutableLiveData<>();
 
 
@@ -29,9 +29,7 @@ public class PasswordRepository implements RepositoryTasks {
     public void addPassword(Password password) {
         PasswordDTO dto = PasswordDTO.DtoFromPassword(password);
 
-        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> {
-            passwordDAO.addPassword(dto);
-        });
+        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> passwordDAO.addPassword(dto));
     }
 
     // read
@@ -43,9 +41,7 @@ public class PasswordRepository implements RepositoryTasks {
     // update
     @Override
     public void updatePasswordNotes(String uid, String noteFile) {
-        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> {
-            passwordDAO.updateNoteFile(uid, noteFile);
-        });
+        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> passwordDAO.updateNoteFile(uid, noteFile));
     }
 
     // delete
@@ -53,8 +49,6 @@ public class PasswordRepository implements RepositoryTasks {
     public void deletePassword(Password password) {
         PasswordDTO dto = PasswordDTO.DtoFromPassword(password);
 
-        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> {
-            passwordDAO.deletePassword(dto);
-        });
+        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> passwordDAO.deletePassword(dto));
     }
 }

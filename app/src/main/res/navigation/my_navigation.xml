@@ -2,29 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_nav"
-    app:startDestination="@id/applianceFragment">
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/passwordFragment">
 
     <fragment
-        android:id="@+id/applianceFragment"
+        android:id="@+id/passwordFragment"
         android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordList"
         android:label="fragment_item_list"
         tools:layout="@layout/password_list_fragment" >
         <action
-            android:id="@+id/action_applianceFragment_to_addApplianceFragment"
-            app:destination="@id/addApplianceFragment" />
+            android:id="@+id/action_passwordFragment_to_addPasswordFragment"
+            app:destination="@id/addPasswordFragment" />
         <action
-            android:id="@+id/action_applianceFragment_to_appliance"
-            app:destination="@id/appliance" />
+            android:id="@+id/action_PasswordFragment_to_password"
+            app:destination="@id/password"/>
     </fragment>
     <fragment
-        android:id="@+id/addApplianceFragment"
+        android:id="@+id/addPasswordFragment"
         android:name="com.sharipov.passwordkeeper.Presentation.View.AddPassword"
-        android:label="fragment_add_appliance"
+        android:label="fragment_add_password"
         tools:layout="@layout/add_password_fragment" />
     <fragment
-        android:id="@+id/appliance"
+        android:id="@+id/password"
         android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordDetails"
-        android:label="appliance_fragment"
+        android:label="password_fragment"
         tools:layout="@layout/password_details_fragment" />
 </navigation>

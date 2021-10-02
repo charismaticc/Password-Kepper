@@ -35,12 +35,14 @@ public class Password {
         this.noteFile = noteFile;
     }
 
+    @NonNull
     public String getWebsiteAddress() {
         return websiteAddress;
     }
 
     public void setWebsiteAddress(String websiteAddress) { this.websiteAddress = websiteAddress; }
 
+    @NonNull
     public String getWebsiteName() {
         return websiteName;
     }
@@ -49,6 +51,7 @@ public class Password {
         this.websiteName = websiteName;
     }
 
+    @NonNull
     public String getLogin() {
         return login;
     }
@@ -57,6 +60,7 @@ public class Password {
         this.login = login;
     }
 
+    @NonNull
     public String getPassword() {
         return password;
     }

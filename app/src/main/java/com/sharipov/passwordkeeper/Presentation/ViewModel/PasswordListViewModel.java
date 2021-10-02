@@ -13,7 +13,7 @@ public class PasswordListViewModel extends ViewModel {
         return Repository.getRepository().getAllPasswords();
     }
 
-    public void deleteAppliance(Password password) {
+    public void deletePassword(Password password) {
         Repository.getRepository().deletePassword(password);
     }
 }

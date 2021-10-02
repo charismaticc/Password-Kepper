@@ -15,12 +15,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    android {
-        buildFeatures {
-            viewBinding = true
-        }
+    buildFeatures {
+        viewBinding  true
     }
-
 
     buildTypes {
         release {
@@ -32,6 +29,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildscript {
+        repositories {
+            google()
+        }
+        dependencies {
+            def nav_version = "2.3.5"
+            classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+        }
+    }
+
+
 }
 
 dependencies {
@@ -47,7 +56,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Room
-    implementation 'androidx.room:room-common:2.3.0'
     implementation 'androidx.room:room-runtime:2.3.0'
     annotationProcessor 'androidx.room:room-compiler:2.3.0'
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:2.5.2"
+
+    // Navigation
+    def nav_frag_ver = "2.3.5"
+    implementation "androidx.navigation:navigation-fragment:$nav_frag_ver"
+    implementation "androidx.navigation:navigation-ui:$nav_frag_ver"
 }

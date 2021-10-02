@@ -18,11 +18,9 @@ public class PasswordDetailsViewModel extends ViewModel {
         this.password = password;
     }
 
-
     public void updateNoteFile(String uid, String noteFile) {
         Repository.getRepository().updatePasswordNotes(uid, noteFile);
     }
-
     public void saveUri(Uri uri) {
         password.setNoteFile(uri.toString());
         updateNoteFile(password.getId(), uri.toString());

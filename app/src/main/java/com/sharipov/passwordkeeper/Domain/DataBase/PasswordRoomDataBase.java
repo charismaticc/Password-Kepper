@@ -15,7 +15,7 @@ import com.sharipov.passwordkeeper.Domain.Model.Password;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {PasswordDAO.class}, version = 1, exportSchema = false)
+@Database(entities = {PasswordDTO.class}, version = 1, exportSchema = false)
 public abstract class PasswordRoomDataBase extends RoomDatabase {
     public abstract PasswordDAO applianceDao();
 
@@ -34,18 +34,14 @@ public abstract class PasswordRoomDataBase extends RoomDatabase {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    Executors.newSingleThreadExecutor().execute(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Password example = new Password();
-                                            example.setWebsiteName("Google");
-                                            example.setWebsiteAddress("google.com");
-                                            example.setLogin("my_gmail@gmail.com");
-                                            example.setPassword("qwerty");
-                                            example.setDescription("Example password");
-
-                                            getDatabase(context).applianceDao().addPassword(PasswordDTO.DtoFromPassword(example));
-                                        }
+                                    Executors.newSingleThreadExecutor().execute(() -> {
+                                        Password example = new Password();
+                                        example.setWebsiteName("Google");
+                                        example.setWebsiteAddress("google.com");
+                                        example.setLogin("my_gmail@gmail.com");
+                                        example.setPassword("qwerty");
+                                        example.setDescription("Example password");
+                                        getDatabase(context).applianceDao().addPassword(PasswordDTO.DtoFromPassword(example));
                                     });
                                 }
                             })
