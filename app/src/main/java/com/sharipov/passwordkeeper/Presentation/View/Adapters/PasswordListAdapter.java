@@ -30,8 +30,8 @@ public class PasswordListAdapter extends RecyclerView.Adapter<PasswordListAdapte
 
     @Override
     public PasswordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        PasswordRowBinding applianceItemBinding = PasswordRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new PasswordViewHolder(applianceItemBinding);
+        PasswordRowBinding passwordItemBinding = PasswordRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new PasswordViewHolder(passwordItemBinding);
     }
 
     @Override

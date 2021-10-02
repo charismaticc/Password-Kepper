@@ -16,13 +16,13 @@ public class MockDataBase implements RepositoryTasks {
     public MockDataBase() {
         passwordList = new ArrayList<>();
 
-        Password mockApplianceFirst = new Password();
-        mockApplianceFirst.setWebsiteName("Google");
-        mockApplianceFirst.setWebsiteAddress("google.com");
-        mockApplianceFirst.setLogin("my_gmail@gmail.com");
-        mockApplianceFirst.setPassword("qwerty");
-        mockApplianceFirst.setDescription("Example password");
-        passwordList.add(mockApplianceFirst);
+        Password mockPasswordFirst = new Password();
+        mockPasswordFirst.setWebsiteName("Google");
+        mockPasswordFirst.setWebsiteAddress("google.com");
+        mockPasswordFirst.setLogin("my_gmail@gmail.com");
+        mockPasswordFirst.setPassword("qwerty");
+        mockPasswordFirst.setDescription("Example password");
+        passwordList.add(mockPasswordFirst);
 
         mockData = new MutableLiveData<>(passwordList);
     }

@@ -60,8 +60,8 @@ public class PasswordList extends Fragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PasswordListViewModel.class);
 
-        viewModel.getAllPasswords().observe(getViewLifecycleOwner(), (List<Password> applianceList) -> {
-            binding.passwordRecyclerView.setAdapter(new PasswordListAdapter(applianceList, (MainActivity) requireActivity()));
+        viewModel.getAllPasswords().observe(getViewLifecycleOwner(), (List<Password> passwordList) -> {
+            binding.passwordRecyclerView.setAdapter(new PasswordListAdapter(passwordList, (MainActivity) requireActivity()));
         });
     }
 

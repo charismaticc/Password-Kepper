@@ -20,7 +20,7 @@ public class PasswordRepository implements RepositoryTasks {
 
     public PasswordRepository(Application application) {
         PasswordRoomDataBase db = PasswordRoomDataBase.getDatabase(application);
-        passwordDAO = db.applianceDao();
+        passwordDAO = db.passwordDAO();
         mutableAllPassword = passwordDAO.getAllPasswords();
     }
     

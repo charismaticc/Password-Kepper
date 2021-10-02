@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {PasswordDTO.class}, version = 1, exportSchema = false)
 public abstract class PasswordRoomDataBase extends RoomDatabase {
-    public abstract PasswordDAO applianceDao();
+    public abstract PasswordDAO passwordDAO();
 
     private static volatile PasswordRoomDataBase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -41,7 +41,7 @@ public abstract class PasswordRoomDataBase extends RoomDatabase {
                                         example.setLogin("my_gmail@gmail.com");
                                         example.setPassword("qwerty");
                                         example.setDescription("Example password");
-                                        getDatabase(context).applianceDao().addPassword(PasswordDTO.DtoFromPassword(example));
+                                        getDatabase(context).passwordDAO().addPassword(PasswordDTO.DtoFromPassword(example));
                                     });
                                 }
                             })
