@@ -39,18 +39,18 @@ public class PasswordList extends Fragment {
         binding.passwordRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         binding.addPasswordButton.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_passwordFragment_to_addPasswordFragment));
 
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-//                int position = viewHolder.getAdapterPosition();
-//                viewModel.deletePassword(((PasswordListAdapter) binding.passwordRecyclerView.getAdapter()).getmValues().get(position));
-//            }
-//        }).attachToRecyclerView(binding.passwordRecyclerView);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                viewModel.deletePassword(((PasswordListAdapter) binding.passwordRecyclerView.getAdapter()).getmValues().get(position));
+            }
+        }).attachToRecyclerView(binding.passwordRecyclerView);
 
         return binding.getRoot();
     }

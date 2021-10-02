@@ -22,11 +22,6 @@ public class AddPassword extends Fragment {
     AddPasswordViewModel viewModel;
 
     private final String errorText = "Неверные или отсутствующие данные";
-
-//    public static AddPassword newInstance() {
-//        return new AddPassword();
-//    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -40,7 +35,6 @@ public class AddPassword extends Fragment {
         binding = null;
     }
 
-    // TODO: remove hardcoded category
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

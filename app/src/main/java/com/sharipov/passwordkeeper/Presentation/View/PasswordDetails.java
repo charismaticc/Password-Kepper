@@ -19,10 +19,6 @@ public class PasswordDetails extends Fragment {
     private PasswordDetailsViewModel viewModel;
     private PasswordDetailsFragmentBinding binding;
 
-    public static PasswordDetails newInstance() {
-        return new PasswordDetails();
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +40,8 @@ public class PasswordDetails extends Fragment {
             binding.textViewWebsiteAddress.setText(viewModel.getPassword().getWebsiteAddress());
             binding.textViewWebsiteName.setText(viewModel.getPassword().getWebsiteName());
             binding.textViewLogin.setText(viewModel.getPassword().getLogin());
-            binding.textViewPossword.setText(viewModel.getPassword().toString());
-            binding.textViewDescription.setText(viewModel.getPassword().toString());
+            binding.textViewPossword.setText(viewModel.getPassword().getPassword());
+            binding.textViewDescription.setText(viewModel.getPassword().getDescription());
         }
         return binding.getRoot();
     }
