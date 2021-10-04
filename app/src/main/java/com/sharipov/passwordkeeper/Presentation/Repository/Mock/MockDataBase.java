@@ -1,11 +1,8 @@
 package com.sharipov.passwordkeeper.Presentation.Repository.Mock;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.sharipov.passwordkeeper.Domain.Model.Password;
 import com.sharipov.passwordkeeper.Presentation.Repository.RepositoryTasks;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,12 +35,6 @@ public class MockDataBase implements RepositoryTasks {
     @Override
     public MutableLiveData <List<Password>> getAllPasswords() {
         return mockData;
-    }
-
-    @Override
-    public void updatePasswordNotes(String uid, String noteFile) {
-        // TODO: nice one
-        return;
     }
 
     @Override

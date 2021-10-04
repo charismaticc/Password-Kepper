@@ -12,7 +12,6 @@ public class Password {
     private String login;
     private String password;
     private String description;
-    private String noteFile;
 
     public Password() {
         this.id = UUID.randomUUID().toString();
@@ -25,14 +24,6 @@ public class Password {
 
     public void setId(@NonNull String id) {
         this.id = id;
-    }
-
-    public String getNoteFile() {
-        return noteFile;
-    }
-
-    public void setNoteFile(String noteFile) {
-        this.noteFile = noteFile;
     }
 
     @NonNull

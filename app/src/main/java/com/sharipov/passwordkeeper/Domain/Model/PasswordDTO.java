@@ -13,7 +13,7 @@ public class PasswordDTO extends Password {
         dto.setLogin(password.getLogin());
         dto.setPassword(password.getPassword());
         dto.setDescription(password.getDescription());
-        dto.setNoteFile(password.getNoteFile());
+//        dto.setNoteFile(password.getNoteFile());
 
         return dto;
     }

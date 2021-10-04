@@ -20,10 +20,6 @@ public interface PasswordDAO {
     @Query("SELECT * FROM pwd_keeper_app")
     LiveData<List<PasswordDTO>> getAllPasswords();
 
-    //update
-    @Query("UPDATE pwd_keeper_app SET noteFile=:noteFile WHERE id=:id")
-    void updateNoteFile(String id, String noteFile);
-
     //delete
     @Delete
     void deletePassword(PasswordDTO Password);

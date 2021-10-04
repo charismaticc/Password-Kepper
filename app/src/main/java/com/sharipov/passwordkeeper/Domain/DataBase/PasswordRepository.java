@@ -38,17 +38,11 @@ public class PasswordRepository implements RepositoryTasks {
         return mutableAllPassword;
     }
 
-    // update
-    @Override
-    public void updatePasswordNotes(String uid, String noteFile) {
-        PasswordRoomDataBase.databaseWriteExecutor.execute(() -> passwordDAO.updateNoteFile(uid, noteFile));
-    }
 
     // delete
     @Override
     public void deletePassword(Password password) {
         PasswordDTO dto = PasswordDTO.DtoFromPassword(password);
-
         PasswordRoomDataBase.databaseWriteExecutor.execute(() -> passwordDAO.deletePassword(dto));
     }
 }

@@ -14,9 +14,6 @@ public interface RepositoryTasks {
     // read
     <T extends Password> LiveData<List<T>> getAllPasswords();
 
-    //update
-    void updatePasswordNotes(String uid, String noteFile);
-
     // delete
     void deletePassword(Password password);
 }
