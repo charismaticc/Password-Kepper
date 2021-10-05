@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.sharipov.passwordkeeper.Domain.Model.Password;
 import com.sharipov.passwordkeeper.Domain.Model.PasswordUtilities;
 import com.sharipov.passwordkeeper.Presentation.ViewModel.PasswordDetailsViewModel;
+import com.sharipov.passwordkeeper.R;
 import com.sharipov.passwordkeeper.databinding.PasswordDetailsFragmentBinding;
 
 public class PasswordDetails extends Fragment {
 
     private PasswordDetailsViewModel viewModel;
     private PasswordDetailsFragmentBinding binding;
+    private Boolean isVisibility = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,12 +44,12 @@ public class PasswordDetails extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = PasswordDetailsFragmentBinding.inflate(inflater, container, false);
-
         if (viewModel.getPassword() != null) {
             binding.textViewWebsiteAddress.setText(viewModel.getPassword().getWebsiteAddress());
             binding.textViewWebsiteName.setText(viewModel.getPassword().getWebsiteName());
             binding.textViewLogin.setText(viewModel.getPassword().getLogin());
             binding.textViewPassword.setText(viewModel.getPassword().getPassword());
+            binding.textViewPassword.setTransformationMethod(new PasswordTransformationMethod());
             binding.textViewDescription.setText(viewModel.getPassword().getDescription());
         }
 
@@ -75,8 +78,20 @@ public class PasswordDetails extends Fragment {
         });
 
         binding.buttonOpenInBrowser.setOnClickListener(view -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www." + binding.textViewWebsiteAddress.getText().toString()));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("https://www.%s", binding.textViewWebsiteAddress.getText().toString())));
             startActivity(browserIntent);
+        });
+
+        binding.imageButtonVisibility.setOnClickListener(view -> {
+            if(isVisibility){
+                binding.imageButtonVisibility.setBackgroundResource(R.drawable.ic_visibility_on);
+                binding.textViewPassword.setTransformationMethod(new PasswordTransformationMethod());
+            }
+            else {
+                binding.imageButtonVisibility.setBackgroundResource(R.drawable.ic_visibility_off);
+                binding.textViewPassword.setTransformationMethod(binding.textViewLogin.getTransformationMethod());
+            }
+            isVisibility = !isVisibility;
         });
         return binding.getRoot();
     }
