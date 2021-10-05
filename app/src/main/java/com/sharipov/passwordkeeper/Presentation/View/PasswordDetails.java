@@ -1,10 +1,16 @@
 package com.sharipov.passwordkeeper.Presentation.View;
 
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -40,9 +46,38 @@ public class PasswordDetails extends Fragment {
             binding.textViewWebsiteAddress.setText(viewModel.getPassword().getWebsiteAddress());
             binding.textViewWebsiteName.setText(viewModel.getPassword().getWebsiteName());
             binding.textViewLogin.setText(viewModel.getPassword().getLogin());
-            binding.textViewPossword.setText(viewModel.getPassword().getPassword());
+            binding.textViewPassword.setText(viewModel.getPassword().getPassword());
             binding.textViewDescription.setText(viewModel.getPassword().getDescription());
         }
+
+        binding.imageButtonCopyWebsiteAddress.setOnClickListener(view -> {
+            ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", binding.textViewWebsiteAddress.getText().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast toast = Toast.makeText(getContext(), "Адрес сайта скопирован!", Toast.LENGTH_SHORT);
+            toast.show();
+        });
+
+        binding.imageButtonCopyLogin.setOnClickListener(view -> {
+            ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", binding.textViewLogin.getText().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast toast = Toast.makeText(getContext(), "Логин скопирован!", Toast.LENGTH_SHORT);
+            toast.show();
+        });
+
+        binding.imageButtonCopyPassword.setOnClickListener(view -> {
+            ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("", binding.textViewPassword.getText().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast toast = Toast.makeText(getContext(), "Пароль скопирован!", Toast.LENGTH_SHORT);
+            toast.show();
+        });
+
+        binding.buttonOpenInBrowser.setOnClickListener(view -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www." + binding.textViewWebsiteAddress.getText().toString()));
+            startActivity(browserIntent);
+        });
         return binding.getRoot();
     }
 

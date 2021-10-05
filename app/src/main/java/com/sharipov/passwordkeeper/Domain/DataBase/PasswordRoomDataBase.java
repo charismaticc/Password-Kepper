@@ -1,6 +1,5 @@
 package com.sharipov.passwordkeeper.Domain.DataBase;
 
-
 import android.content.Context;
 
 import androidx.annotation.NonNull;
