@@ -21,13 +21,14 @@ import java.util.List;
 public class PasswordListAdapter extends RecyclerView.Adapter<PasswordListAdapter.PasswordViewHolder> {
 
     private final List<Password> mValues;
-    private MainActivity mainActivity;
+    private final MainActivity mainActivity;
 
     public PasswordListAdapter(List<Password> mValues, MainActivity mainActivity) {
         this.mValues = mValues;
         this.mainActivity = mainActivity;
     }
 
+    @NonNull
     @Override
     public PasswordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         PasswordRowBinding passwordItemBinding = PasswordRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
@@ -46,7 +47,7 @@ public class PasswordListAdapter extends RecyclerView.Adapter<PasswordListAdapte
         holder.passwordRowBinding.textViewWebSiteAddress.setText(mValues.get(position).getWebsiteAddress());
         holder.passwordRowBinding.textViewWebsiteName.setText(mValues.get(position).getWebsiteName());
         Picasso.with(holder.passwordRowBinding.getRoot().getContext())
-                .load("https://www." + mValues.get(position).getWebsiteAddress() + "/favicon.ico")
+                .load(mValues.get(position).getWebsiteAddress() + "/favicon.ico")
                 .error(R.drawable.ic_key).into(holder.passwordRowBinding.imageViewWebsiteIcon);
     }
 

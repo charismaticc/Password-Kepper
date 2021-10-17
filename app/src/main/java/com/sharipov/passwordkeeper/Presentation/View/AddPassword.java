@@ -1,20 +1,19 @@
 package com.sharipov.passwordkeeper.Presentation.View;
 
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
 import com.sharipov.passwordkeeper.Presentation.ViewModel.AddPasswordViewModel;
 import com.sharipov.passwordkeeper.databinding.AddPasswordFragmentBinding;
-
+import java.util.Locale;
 import java.util.Objects;
 
 public class AddPassword extends Fragment {
@@ -41,8 +40,15 @@ public class AddPassword extends Fragment {
         binding = AddPasswordFragmentBinding.inflate(getLayoutInflater(), container, false);
 
         binding.saveButton.setOnClickListener(view -> {
-            if (!binding.editTextWebsiteAddress.getText().toString().isEmpty() && !binding.editTextWebsiteName.getText().toString().isEmpty() &&
-                    !binding.editTextLogin.getText().toString().isEmpty() && !binding.editTextPassword.getText().toString().isEmpty()) {
+            if (!Objects.requireNonNull(binding.editTextWebsiteAddress.getText()).toString().isEmpty() && !Objects.requireNonNull(binding.editTextWebsiteName.getText()).toString().isEmpty() &&
+                    !Objects.requireNonNull(binding.editTextLogin.getText()).toString().isEmpty() && !Objects.requireNonNull(binding.editTextPassword.getText()).toString().isEmpty()) {
+                String httpsUrl = String.format("https://www.%s", binding.editTextWebsiteAddress.getText().toString()).toLowerCase(Locale.ROOT);
+                String httpUrl = String.format("http://www.%s", binding.editTextWebsiteAddress.getText().toString()).toLowerCase(Locale.ROOT);
+                if(Patterns.WEB_URL.matcher(httpsUrl).matches()){
+                    binding.editTextWebsiteAddress.setText(httpsUrl);
+                }else if(Patterns.WEB_URL.matcher(httpUrl).matches()){
+                    binding.editTextWebsiteAddress.setText(httpUrl);
+                }
                 viewModel.AddPassword(
                         binding.editTextWebsiteAddress.getText().toString(),
                         binding.editTextWebsiteName.getText().toString(),

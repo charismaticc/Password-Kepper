@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_PasswordFragment_to_password"
             app:destination="@id/password"/>
+        <action
+            android:id="@+id/action_passwordFragment_to_passwordGeneratorFragment"
+            app:destination="@id/passwordGeneratorFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPasswordFragment"
@@ -27,4 +30,9 @@
         android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordDetails"
         android:label="password_fragment"
         tools:layout="@layout/password_details_fragment" />
+    <fragment
+        android:id="@+id/passwordGeneratorFragment"
+        android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordGeneratorFragment"
+        android:label="fragment_password_generator"
+        tools:layout="@layout/fragment_password_generator" />
 </navigation>

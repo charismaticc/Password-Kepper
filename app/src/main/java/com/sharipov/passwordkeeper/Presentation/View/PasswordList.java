@@ -23,6 +23,7 @@ import com.sharipov.passwordkeeper.R;
 import com.sharipov.passwordkeeper.databinding.PasswordListFragmentBinding;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PasswordList extends Fragment {
     private PasswordListViewModel viewModel;
@@ -36,8 +37,9 @@ public class PasswordList extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = PasswordListFragmentBinding.inflate(getLayoutInflater(), container, false);
         binding.passwordRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.passwordRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        binding.passwordRecyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL));
         binding.addPasswordButton.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_passwordFragment_to_addPasswordFragment));
+        binding.passwordGeneratorButton.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_passwordFragment_to_passwordGeneratorFragment));
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
@@ -60,9 +62,8 @@ public class PasswordList extends Fragment {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PasswordListViewModel.class);
 
-        viewModel.getAllPasswords().observe(getViewLifecycleOwner(), (List<Password> passwordList) -> {
-            binding.passwordRecyclerView.setAdapter(new PasswordListAdapter(passwordList, (MainActivity) requireActivity()));
-        });
+        viewModel.getAllPasswords().observe(getViewLifecycleOwner(), (List<Password> passwordList) ->
+                binding.passwordRecyclerView.setAdapter(new PasswordListAdapter(passwordList, (MainActivity) requireActivity())));
     }
 
     @Override

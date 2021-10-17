@@ -57,28 +57,25 @@ public class PasswordDetails extends Fragment {
             ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("", binding.textViewWebsiteAddress.getText().toString());
             clipboard.setPrimaryClip(clip);
-            Toast toast = Toast.makeText(getContext(), "Адрес сайта скопирован!", Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(getContext(), "Адрес сайта скопирован!", Toast.LENGTH_SHORT).show();
         });
 
         binding.imageButtonCopyLogin.setOnClickListener(view -> {
             ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("", binding.textViewLogin.getText().toString());
             clipboard.setPrimaryClip(clip);
-            Toast toast = Toast.makeText(getContext(), "Логин скопирован!", Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(getContext(), "Логин скопирован!", Toast.LENGTH_SHORT).show();
         });
 
         binding.imageButtonCopyPassword.setOnClickListener(view -> {
             ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("", binding.textViewPassword.getText().toString());
             clipboard.setPrimaryClip(clip);
-            Toast toast = Toast.makeText(getContext(), "Пароль скопирован!", Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(getContext(), "Пароль скопирован!", Toast.LENGTH_SHORT).show();
         });
 
         binding.buttonOpenInBrowser.setOnClickListener(view -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("https://www.%s", binding.textViewWebsiteAddress.getText().toString())));
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(binding.textViewWebsiteAddress.getText().toString()));
             startActivity(browserIntent);
         });
 
