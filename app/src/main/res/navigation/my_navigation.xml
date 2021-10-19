@@ -32,7 +32,7 @@
         tools:layout="@layout/password_details_fragment" />
     <fragment
         android:id="@+id/passwordGeneratorFragment"
-        android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordGeneratorFragment"
+        android:name="com.sharipov.passwordkeeper.Presentation.View.PasswordGenerator"
         android:label="fragment_password_generator"
         tools:layout="@layout/fragment_password_generator" />
 </navigation>

@@ -7,30 +7,30 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.sharipov.passwordkeeper.API.Service.PasswordResponse;
+import com.sharipov.passwordkeeper.API.Service.PasswordService;
 import com.sharipov.passwordkeeper.Presentation.Repository.Network.GeneratePassword;
-import com.sharipov.passwordkeeper.Presentation.ViewModel.PasswordDetailsViewModel;
 import com.sharipov.passwordkeeper.databinding.FragmentPasswordGeneratorBinding;
+
 import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-
-public class PasswordGeneratorFragment extends Fragment {
-    private PasswordDetailsViewModel viewModel;
+public class PasswordGenerator extends Fragment {
     private FragmentPasswordGeneratorBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(PasswordDetailsViewModel.class);
     }
 
     @Override
@@ -38,26 +38,30 @@ public class PasswordGeneratorFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentPasswordGeneratorBinding.inflate(inflater, container, false);
         binding.generaitPasswordButton.setOnClickListener(view -> {
+            final GeneratePassword service;
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://makemeapassword.ligos.net/")
                     .build();
-            GeneratePassword service = retrofit.create(GeneratePassword.class);
-            Call<ResponseBody> call = service.generatePassword(1, 12);
+            service = retrofit.create(GeneratePassword.class);
+            int len = 12;
+            if(binding.editTextNumber.getText().length()>0){
+                len = Integer.parseInt(binding.editTextNumber.getText().toString());
+            }
+            char symbol = 'n';
+            if(binding.checkBox.isChecked()){
+                symbol = 'y';
+            }
+            Call<ResponseBody> call = service.generatePassword(1, len, symbol);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                     if(response.isSuccessful() && response.body() != null){
-                        String password = null;
                         try {
-                            password = response.body().string();
+                            String password = response.body().string();
+                            binding.passwordGeneratorTextView.setText(password.split("\"")[3]);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        assert password != null;
-                        binding.passwordGeneratorTextView.setText(password.split("\"")[3]);
-                    }
-                    else {
-                        Toast.makeText(getContext(), Toast.LENGTH_SHORT, Integer.parseInt("Проблемы с сетью")).show();
                     }
                 }
                 @Override
